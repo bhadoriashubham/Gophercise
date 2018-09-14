@@ -37,10 +37,10 @@ printf "${GREEN}=                                                               
 printf "${GREEN}====================================================================================================${NC}\n"
 printf "${GREEN}====================================================================================================${NC}\n"
 printf "${GREEN}====================================================================================================${NC}\n"
-cd recoverer
+cd Secret
 CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 cd ..
 
-cd task
+cd recover
 CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 cd ..
