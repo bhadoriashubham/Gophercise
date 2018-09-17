@@ -3,9 +3,9 @@ package secret
 import (
 	"encoding/json"
 	"errors"
+	"github.com/bhadoriashubham/gophercises/secret/encrypt"
 	"io"
 	"os"
-	"secret/encrypt"
 	"sync"
 )
 

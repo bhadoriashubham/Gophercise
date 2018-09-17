@@ -49,7 +49,7 @@ func TestVault_loadKeyvalues(t *testing.T) {
 func TestVault_loadKeyvaluesNeg(t *testing.T) {
 
 	home, _ := homedir.Dir()
-	path := filepath.Join(home, ".test_secrets")
+	path := filepath.Join(home, ".secrets")
 	v := File("xyz", path)
 	err := v.loadKeyvalues()
 	if err != nil {

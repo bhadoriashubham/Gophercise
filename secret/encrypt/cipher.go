@@ -10,13 +10,13 @@ import (
 	"io"
 )
 
+//encryptStream ...
 func encryptStream(key string, iv []byte) (cipher.Stream, error) {
 	block, err := newCipherBlock(key)
 	return cipher.NewCFBEncrypter(block, iv), err
 }
 
-// EncryptWriter will return a writer that will write encrypted data to
-// the original writer.
+//Encrypt ...
 func Encrypt(key string, w io.Writer) (*cipher.StreamWriter, error) {
 	iv := make([]byte, aes.BlockSize)
 	_, err := io.ReadFull(rand.Reader, iv)
@@ -26,6 +26,7 @@ func Encrypt(key string, w io.Writer) (*cipher.StreamWriter, error) {
 	return &cipher.StreamWriter{S: stream, W: w}, err
 }
 
+//checkIV ...
 func checkIV(n int, iv []byte, err error) error {
 	if len(iv) != n || err != nil {
 		return errors.New("Unable to write IV into writer")
@@ -33,14 +34,13 @@ func checkIV(n int, iv []byte, err error) error {
 	return nil
 }
 
+//decryptStream ...
 func decryptStream(key string, iv []byte) (cipher.Stream, error) {
 	block, err := newCipherBlock(key)
 	return cipher.NewCFBDecrypter(block, iv), err
 }
 
-// DecryptReader will return a reader that will decrypt data from the
-// provided reader and give the user a way to read that data as it if was
-// not encrypted.
+//Decrypt ...
 func Decrypt(key string, r io.Reader) (*cipher.StreamReader, error) {
 	iv := make([]byte, aes.BlockSize)
 	n, err := r.Read(iv)
@@ -51,6 +51,7 @@ func Decrypt(key string, r io.Reader) (*cipher.StreamReader, error) {
 	return &cipher.StreamReader{S: stream, R: r}, err
 }
 
+//newCipherBlock ...
 func newCipherBlock(key string) (cipher.Block, error) {
 	hasher := md5.New()
 	fmt.Fprint(hasher, key)

@@ -16,7 +16,8 @@ package cobra
 
 import (
 	"fmt"
-	"secret"
+
+	"github.com/bhadoriashubham/gophercises/secret"
 
 	"github.com/spf13/cobra"
 )

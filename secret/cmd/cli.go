@@ -1,8 +1,6 @@
 package main
 
-import (
-	"secret/cmd/cobra"
-)
+import "github.com/bhadoriashubham/gophercises/secret/cmd/cobra"
 
 func main() {
 
